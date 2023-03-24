@@ -1,6 +1,5 @@
 import {
-  useState,
-  useEffect,
+  useSyncExternalStore,
   createContext,
   useContext,
   useRef,
@@ -59,15 +58,7 @@ const useStore = (): [Store, (value: Partial<Store>) => void] => {
   if (!store) {
     throw new Error("No Context found");
   }
-  const [state, setState] = useState(() => store.get());
-
-  useEffect(() => {
-    const unsubscribeFn = store.subscribe(() => setState(store.get()));
-
-    return () => {
-      unsubscribeFn();
-    };
-  }, []);
+  const state = useSyncExternalStore(store.subscribe, store.get);
 
   return [state, store.set];
 };
