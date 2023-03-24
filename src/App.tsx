@@ -1,4 +1,4 @@
-import { useState, useEffect, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import store from "./store";
 
 import styles from "./App.module.css";
@@ -6,28 +6,15 @@ import styles from "./App.module.css";
 interface IValueItemProp {
   item: string;
 }
+type State = Record<string, number>;
 
-/**
- * @desription This is an approach to use with React versions < 18, is we don't have the
- * `useSyncExternalStore` hook
- *
- */
-const useStore = (
-  selector: (
-    state: Record<string, number>
-  ) => Record<string, number> | number = (s) => s
-): number | Record<string, number> => {
-  const [state, setState] = useState(() => selector(store.getState()));
+const useStore = (selector: (state: State) => State | number = (s) => s) => {
+  const subscriberFn = store.subscribe;
+  const getSnapshotFn = () => selector(store.getState());
 
-  useEffect(() => {
-    const unsubscribe = store.subscribe((s) => setState(selector(s)));
+  const currentState = useSyncExternalStore(subscriberFn, getSnapshotFn);
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  return state;
+  return currentState;
 };
 
 const DisplayValue = ({ item }: IValueItemProp) => {
