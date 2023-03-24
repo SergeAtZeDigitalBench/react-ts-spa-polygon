@@ -1,29 +1,82 @@
-import { useState, createContext, useContext } from "react";
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useRef,
+  useCallback,
+} from "react";
 
-type State = Record<"first" | "last", string>;
-type ContextType = [
-  State,
-  React.Dispatch<
-    React.SetStateAction<{
-      first: string;
-      last: string;
-    }>
-  >
-];
+type Store = Record<"first" | "last", string>;
 
-const FormContext = createContext<ContextType>([
-  {
-    first: "",
-    last: "",
-  },
-  () => {},
-]);
+type VoidFn = () => void;
+
+type StoreData = {
+  get: () => Store;
+  set: (value: Partial<Store>) => void;
+  subscribe: (calllback: VoidFn) => VoidFn;
+};
+
+const useStoreData = (): StoreData => {
+  const storeRef = useRef<Store>({ first: "", last: "" });
+  const subscribersRef = useRef(new Set<VoidFn>());
+
+  const get = useCallback(() => storeRef.current, []);
+
+  const set = useCallback((value: Partial<Store>) => {
+    const newStore = { ...storeRef.current, ...value };
+    storeRef.current = newStore;
+    subscribersRef.current.forEach((fn) => fn());
+  }, []);
+
+  const subscribe = useCallback((callback: VoidFn) => {
+    subscribersRef.current.add(callback);
+    return () => {
+      subscribersRef.current.delete(callback);
+    };
+  }, []);
+
+  return {
+    get,
+    set,
+    subscribe,
+  };
+};
+
+const FormContext = createContext<ReturnType<typeof useStoreData> | null>(null);
+
+const Provider = ({ children }: { children: React.ReactNode }) => {
+  const { get, set, subscribe } = useStoreData();
+  return (
+    <FormContext.Provider value={{ get, set, subscribe }}>
+      {children}
+    </FormContext.Provider>
+  );
+};
+
+const useStore = (): [Store, (value: Partial<Store>) => void] => {
+  const store = useContext(FormContext);
+  if (!store) {
+    throw new Error("No Context found");
+  }
+  const [state, setState] = useState(() => store.get());
+
+  useEffect(() => {
+    const unsubscribeFn = store.subscribe(() => setState(store.get()));
+
+    return () => {
+      unsubscribeFn();
+    };
+  }, []);
+
+  return [state, store.set];
+};
 
 const TextInput = ({ value }: { value: "first" | "last" }) => {
-  const [store, setStore] = useContext(FormContext);
+  const [store, setStore] = useStore();
 
   const handlEchange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStore((current) => ({ ...current, [value]: event.target.value }));
+    setStore({ [value]: event.target.value });
   };
 
   return (
@@ -39,7 +92,7 @@ const TextInput = ({ value }: { value: "first" | "last" }) => {
 };
 
 const Display = ({ value }: { value: "first" | "last" }) => {
-  const [store] = useContext(FormContext);
+  const [store] = useStore();
 
   return (
     <div className="p-2">
@@ -79,20 +132,15 @@ const ContentContainer = () => {
 };
 
 function App() {
-  const [store, setStore] = useState({
-    first: "",
-    last: "",
-  });
-
   return (
-    <FormContext.Provider value={[store, setStore]}>
+    <Provider>
       <div className="mt-2 py-2 px-6 border-2 border-gray-500">
         <h1 className="text-3xl font-bold underline text-center mt-6 mb-12">
           Use React Context Optimised
         </h1>
         <ContentContainer />
       </div>
-    </FormContext.Provider>
+    </Provider>
   );
 }
 
