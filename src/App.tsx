@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import store from "./store";
 
 import styles from "./App.module.css";
@@ -7,6 +7,11 @@ interface IValueItemProp {
   item: string;
 }
 
+/**
+ * @desription This is an approach to use with React versions < 18, is we don't have the
+ * `useSyncExternalStore` hook
+ *
+ */
 const useStore = (
   selector: (
     state: Record<string, number>
