@@ -7,51 +7,58 @@ interface IValueItemProp {
   item: string;
 }
 
-const useStore = (): [
-  Record<string, number>,
-  (incomingState: Record<string, number>) => void
-] => {
-  const [state, setState] = useState(() => store.getState());
+const useStore = (
+  selector: (
+    state: Record<string, number>
+  ) => Record<string, number> | number = (s) => s
+): number | Record<string, number> => {
+  const [state, setState] = useState(() => selector(store.getState()));
 
   useEffect(() => {
-    const unsubscribe = store.subscribe(setState);
+    const unsubscribe = store.subscribe((s) => setState(selector(s)));
 
     return () => {
       unsubscribe();
     };
   }, []);
 
-  return [state, store.setState];
+  return state;
 };
 
 const DisplayValue = ({ item }: IValueItemProp) => {
-  const [state] = useStore();
+  const state = useStore((s) => s[item]);
 
   return (
     <div>
-      {item}: {state[item]}
+      {item}: {state as number}
     </div>
   );
 };
 
 const IncrementValue = ({ item }: IValueItemProp) => {
-  const [state, setState] = useStore();
-
-  const handleClick = () => {
-    setState({ ...state, [item]: state[item] + 1 });
-  };
-
-  return <button onClick={handleClick}>Increment {item}</button>;
+  return (
+    <button
+      onClick={() => {
+        const state = store.getState();
+        store.setState({ ...state, [item]: state[item] + 1 });
+      }}
+    >
+      Increment {item}
+    </button>
+  );
 };
 
 const DecrementValue = ({ item }: IValueItemProp) => {
-  const [state, setState] = useStore();
-
-  const handleClick = () => {
-    setState({ ...state, [item]: state[item] - 1 });
-  };
-
-  return <button onClick={handleClick}>Decrement {item}</button>;
+  return (
+    <button
+      onClick={() => {
+        const state = store.getState();
+        store.setState({ ...state, [item]: state[item] - 1 });
+      }}
+    >
+      Decrement {item}
+    </button>
+  );
 };
 
 function App() {
