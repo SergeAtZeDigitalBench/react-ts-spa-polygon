@@ -6,61 +6,61 @@ import {
   useCallback,
 } from "react";
 
-type Store = Record<"first" | "last", string>;
-
 type VoidFn = () => void;
 
-type StoreData = {
+type StoreData<Store> = {
   get: () => Store;
   set: (value: Partial<Store>) => void;
   subscribe: (calllback: VoidFn) => VoidFn;
 };
 
-type Selector<R = any> = (store: Store) => R;
+export const createFastContext = <Store>(initialState: Store) => {
+  const useStoreData = (): StoreData<Store> => {
+    const storeRef = useRef<Store>(initialState);
+    const subscribersRef = useRef(new Set<VoidFn>());
 
-export const useStoreData = (): StoreData => {
-  const storeRef = useRef<Store>({ first: "", last: "" });
-  const subscribersRef = useRef(new Set<VoidFn>());
+    const get = useCallback(() => storeRef.current, []);
 
-  const get = useCallback(() => storeRef.current, []);
+    const set = useCallback((value: Partial<Store>) => {
+      const newStore = { ...storeRef.current, ...value };
+      storeRef.current = newStore;
+      subscribersRef.current.forEach((fn) => fn());
+    }, []);
 
-  const set = useCallback((value: Partial<Store>) => {
-    const newStore = { ...storeRef.current, ...value };
-    storeRef.current = newStore;
-    subscribersRef.current.forEach((fn) => fn());
-  }, []);
+    const subscribe = useCallback((callback: VoidFn) => {
+      subscribersRef.current.add(callback);
 
-  const subscribe = useCallback((callback: VoidFn) => {
-    subscribersRef.current.add(callback);
+      return () => {
+        subscribersRef.current.delete(callback);
+      };
+    }, []);
 
-    return () => {
-      subscribersRef.current.delete(callback);
+    return {
+      get,
+      set,
+      subscribe,
     };
-  }, []);
-
-  return {
-    get,
-    set,
-    subscribe,
   };
-};
 
-export const FormContext = createContext<ReturnType<
-  typeof useStoreData
-> | null>(null);
-
-export const useStoreContext = <D = any>(
-  selector: Selector<D> = (currentStore) => currentStore as D
-): [D, (value: Partial<Store>) => void] => {
-  const store = useContext(FormContext);
-
-  if (!store) {
-    throw new Error("No Context found");
-  }
-
-  const state = useSyncExternalStore(store.subscribe, () =>
-    selector(store.get())
+  const FormContext = createContext<ReturnType<typeof useStoreData> | null>(
+    null
   );
 
-  return [state, store.set];
+  const useStoreContext = <D = any>(
+    selector: (store: Store) => D = (currentStore) => currentStore as any
+  ): [D, (value: Partial<Store>) => void] => {
+    const store = useContext(FormContext);
+
+    if (!store) {
+      throw new Error("No Context found");
+    }
+
+    const state = useSyncExternalStore(store.subscribe, () =>
+      selector(store.get())
+    );
+
+    return [state, store.set];
+  };
+
+  return { useStoreData, useStoreContext, FormContext };
 };

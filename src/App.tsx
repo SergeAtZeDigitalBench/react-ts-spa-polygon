@@ -1,4 +1,10 @@
-import { FormContext, useStoreContext, useStoreData } from "./hooks";
+import { createFastContext } from "./hooks";
+
+type Store = Record<"first" | "last", string>;
+
+const { FormContext, useStoreContext, useStoreData } = createFastContext<Store>(
+  { first: "John", last: "Doe" }
+);
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const { get, set, subscribe } = useStoreData();
