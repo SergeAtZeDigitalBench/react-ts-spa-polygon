@@ -1,51 +1,8 @@
-import {
-  useSyncExternalStore,
-  createContext,
-  useContext,
-  useRef,
-  useCallback,
-} from "react";
-
-type Store = Record<"first" | "last", string>;
-
-type VoidFn = () => void;
-
-type StoreData = {
-  get: () => Store;
-  set: (value: Partial<Store>) => void;
-  subscribe: (calllback: VoidFn) => VoidFn;
-};
-
-const useStoreData = (): StoreData => {
-  const storeRef = useRef<Store>({ first: "", last: "" });
-  const subscribersRef = useRef(new Set<VoidFn>());
-
-  const get = useCallback(() => storeRef.current, []);
-
-  const set = useCallback((value: Partial<Store>) => {
-    const newStore = { ...storeRef.current, ...value };
-    storeRef.current = newStore;
-    subscribersRef.current.forEach((fn) => fn());
-  }, []);
-
-  const subscribe = useCallback((callback: VoidFn) => {
-    subscribersRef.current.add(callback);
-    return () => {
-      subscribersRef.current.delete(callback);
-    };
-  }, []);
-
-  return {
-    get,
-    set,
-    subscribe,
-  };
-};
-
-const FormContext = createContext<ReturnType<typeof useStoreData> | null>(null);
+import { FormContext, useStoreContext, useStoreData } from "./hooks";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const { get, set, subscribe } = useStoreData();
+
   return (
     <FormContext.Provider value={{ get, set, subscribe }}>
       {children}
@@ -53,18 +10,8 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const useStore = (): [Store, (value: Partial<Store>) => void] => {
-  const store = useContext(FormContext);
-  if (!store) {
-    throw new Error("No Context found");
-  }
-  const state = useSyncExternalStore(store.subscribe, store.get);
-
-  return [state, store.set];
-};
-
 const TextInput = ({ value }: { value: "first" | "last" }) => {
-  const [store, setStore] = useStore();
+  const [fieldValue, setStore] = useStoreContext((state) => state[value]);
 
   const handlEchange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setStore({ [value]: event.target.value });
@@ -74,7 +21,7 @@ const TextInput = ({ value }: { value: "first" | "last" }) => {
     <div className="p-2">
       {value}:{" "}
       <input
-        value={store[value]}
+        value={fieldValue}
         onChange={handlEchange}
         className="px-2 py-1 border-2 border-green-400 rounded-md"
       />
@@ -83,11 +30,11 @@ const TextInput = ({ value }: { value: "first" | "last" }) => {
 };
 
 const Display = ({ value }: { value: "first" | "last" }) => {
-  const [store] = useStore();
+  const [fieldValue] = useStoreContext((state) => state[value]);
 
   return (
     <div className="p-2">
-      {value}: {store[value]}
+      {value}: {fieldValue}
     </div>
   );
 };
