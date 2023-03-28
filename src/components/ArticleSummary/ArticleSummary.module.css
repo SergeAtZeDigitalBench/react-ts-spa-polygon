@@ -1,0 +1,24 @@
+.ArticleSummary {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  width: 90%;
+  margin: 0 auto;
+  min-width: 330px;
+  white-space: pre-wrap;
+  text-align: center;
+}
+.ArticleSummary > h3 {
+  min-height: 50px;
+}
+
+.ArticleSummaryImageBox {
+  width: 320px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.ArticleSummaryImage {
+  width: 100%;
+  height: 100%;
+}

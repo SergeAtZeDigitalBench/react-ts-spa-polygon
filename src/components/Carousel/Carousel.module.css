@@ -1,0 +1,46 @@
+.Carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.CarouselInner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+}
+
+.CarouselItem {
+  display: inline-flex;
+}
+
+.CarouselIndicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 15px;
+  min-height: 30px;
+}
+
+.CarouselIndicatorsPageButton {
+  width: 25px;
+  height: 25px;
+}
+
+.CarouselIndicatorsControlButton {
+  position: absolute;
+  top: 37%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+.Prev {
+  left: 20px;
+}
+
+.Next {
+  right: 20px;
+}

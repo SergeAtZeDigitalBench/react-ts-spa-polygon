@@ -1,20 +1,23 @@
 import { useState } from "react";
 
-import Switch from "./components/Switch";
+import Carousel from "./components/Carousel";
+import ArticleSummary from "./components/ArticleSummary";
+import { cars } from "./data";
 
 import "./App.css";
 
 function App() {
-  const [isOn, setIsOn] = useState<boolean>(false);
-
-  const handleToggle = () => setIsOn((current) => !current);
-
   return (
     <div>
-      <h1 className="text-3xl font-bold underline text-center">Switch</h1>
-      <div className="h-screen flex flex-col gap-2 justify-center items-center">
-        <h5>{isOn ? "ON" : "OFF"}</h5>
-        <Switch isOn={isOn} handleToggle={handleToggle} />
+      <h1 className="text-3xl font-bold underline text-center">Carousel</h1>
+      <div className="h-screen flex items-center">
+        <Carousel itemsPerView={3}>
+          {cars.map((article) => (
+            <Carousel.Item key={article.id}>
+              <ArticleSummary item={article} />
+            </Carousel.Item>
+          ))}
+        </Carousel>
       </div>
     </div>
   );
