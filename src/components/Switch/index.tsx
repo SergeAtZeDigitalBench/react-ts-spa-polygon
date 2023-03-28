@@ -1,5 +1,6 @@
 import React from "react";
 
+import { classnames } from "../../lib";
 import styles from "./Switch.module.css";
 
 const SWITCH_ID = "react-switch-new";
@@ -19,7 +20,10 @@ const Switch = ({ isOn, handleToggle }: IProps): JSX.Element => {
         checked={isOn}
         onChange={handleToggle}
       />
-      <label className={styles.SwitchLabel} htmlFor={SWITCH_ID}>
+      <label
+        className={classnames(styles.SwitchLabel, isOn && styles.SwitchOn)}
+        htmlFor={SWITCH_ID}
+      >
         <span className={styles.SwitchButton} />
       </label>
     </>

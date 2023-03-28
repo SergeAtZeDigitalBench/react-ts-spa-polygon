@@ -17,6 +17,10 @@
   transition: background-color 0.2s;
 }
 
+.SwitchOn {
+  background: mediumaquamarine;
+}
+
 .SwitchLabel .SwitchButton {
   content: "";
   position: absolute;
