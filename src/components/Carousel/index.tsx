@@ -69,7 +69,6 @@ const Carousel = ({ children, itemsPerView = 1 }: IProps): JSX.Element => {
           });
         })}
       </div>
-      {/* <div className={styles.CarouselIndicators}> */}
       <button
         onClick={handlePrev}
         className={classnames(
@@ -90,7 +89,6 @@ const Carousel = ({ children, itemsPerView = 1 }: IProps): JSX.Element => {
       >
         next
       </button>
-      {/* </div> */}
     </div>
   );
 };
