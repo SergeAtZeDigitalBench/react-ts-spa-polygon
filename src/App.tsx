@@ -6,13 +6,13 @@ import Navigation, { navLinks } from "./components/Navigation";
 
 function App() {
   return (
-    <div>
+    <>
       <Navigation />
       <Switch>
         <Route path={navLinks[0].pathname} exact component={Homepage} />
         <Route path={navLinks[1].pathname} component={BasicList} />
       </Switch>
-    </div>
+    </>
   );
 }
 
