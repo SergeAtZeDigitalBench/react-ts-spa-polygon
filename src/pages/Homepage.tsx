@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-import EmailCollector from "../components/EmailCollector";
+import EmailCollector, { IUser } from "../components/EmailCollector";
+import ParentControls from "../components/EmailCollector/ParentControls";
+
+const USER: IUser = { email: "johnny.pony@gmail.com" };
 interface IProps {
   [x: string]: unknown;
 }
 
 const Homepage = ({}: IProps): JSX.Element => {
+  const [user, setUser] = useState<IUser | null>(null);
+
+  const toggleUser = () => setUser((current) => (!!current ? null : USER));
+
   return (
     <div>
       <h1 className="text-3xl font-bold underline text-center">
         React SPA Polygon / Homepage
       </h1>
-      <EmailCollector />
+      <ParentControls user={user} toggleUser={toggleUser} />
+      <EmailCollector email={user?.email} />
     </div>
   );
 };

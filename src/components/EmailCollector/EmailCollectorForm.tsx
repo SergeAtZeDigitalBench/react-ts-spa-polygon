@@ -1,9 +1,9 @@
 import React from "react";
 
-import { IFormState } from ".";
+import { IFormState, Mode } from "./types";
 
 interface IProps {
-  mode: "email_collect" | "password";
+  mode: Mode;
   formValues: IFormState;
   handleSubmit: (event: React.FormEvent) => Promise<void> | void;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -16,7 +16,7 @@ const getButtonContent = ({
   isLoading,
 }: Pick<IProps, "mode" | "isLoading">): string => {
   if (isLoading) {
-    return mode === "email_collect" ? "Subscribing..." : "Signing in...";
+    return mode !== "password" ? "Subscribing..." : "Signing in...";
   }
   return mode === "email_collect" ? "Subscribe" : "Sign in";
 };
@@ -29,10 +29,13 @@ const EmailCollectorForm = ({
   error,
   isLoading,
 }: IProps): JSX.Element => {
+  const isEmailInput =
+    mode === "email_collect" || mode === "current_user_email";
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       <div className="flex">
-        {mode === "email_collect" ? (
+        {isEmailInput ? (
           <input
             type="text"
             name="email"
@@ -40,6 +43,7 @@ const EmailCollectorForm = ({
             onChange={handleChange}
             className="px-4 py-2 bg-white text-black flex-1"
             disabled={isLoading}
+            placeholder="Enter email address"
           />
         ) : (
           <input
@@ -49,6 +53,7 @@ const EmailCollectorForm = ({
             onChange={handleChange}
             className="px-4 py-2 bg-white text-black flex-1"
             disabled={isLoading}
+            placeholder="Enter password"
           />
         )}
         <button

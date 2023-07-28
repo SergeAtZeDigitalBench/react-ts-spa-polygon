@@ -1,4 +1,4 @@
-const mockResolveValue = <D = unknown>(
+export const mockResolveValue = <D = unknown>(
   data: D,
   errorMessage?: string
 ): Promise<D> =>
