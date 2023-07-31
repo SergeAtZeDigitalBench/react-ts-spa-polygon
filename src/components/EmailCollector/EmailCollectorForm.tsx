@@ -21,6 +21,11 @@ const getButtonContent = ({
   return mode === "email_collect" ? "Subscribe" : "Sign in";
 };
 
+/**
+ * @description email collector UI, for state management POC
+ * @param {IProps} props
+ * @returns {JSX.Element} form markup based on mode
+ */
 const EmailCollectorForm = ({
   mode,
   formValues,

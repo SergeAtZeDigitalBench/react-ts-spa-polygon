@@ -37,7 +37,7 @@ interface IProps {
   email?: string;
 }
 
-const EmailCollector = ({ email }: IProps): JSX.Element => {
+const EmailCollectorContainer = ({ email }: IProps): JSX.Element => {
   const [state, setState] = useState<IState>({
     mode: !email ? "email_collect" : "current_user_email",
     isLoading: false,
@@ -198,4 +198,4 @@ const EmailCollector = ({ email }: IProps): JSX.Element => {
   );
 };
 
-export default EmailCollector;
+export default EmailCollectorContainer;

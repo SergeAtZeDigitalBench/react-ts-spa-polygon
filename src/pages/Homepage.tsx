@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import EmailCollector, { IUser } from "../components/EmailCollector";
+import EmailCollectorContainer, { IUser } from "../components/EmailCollector";
 import ParentControls from "../components/EmailCollector/ParentControls";
 
 const USER: IUser = { email: "johnny.pony@gmail.com" };
@@ -19,7 +19,7 @@ const Homepage = ({}: IProps): JSX.Element => {
         React SPA Polygon / Homepage
       </h1>
       <ParentControls user={user} toggleUser={toggleUser} />
-      <EmailCollector email={user?.email} />
+      <EmailCollectorContainer email={user?.email} />
     </div>
   );
 };
