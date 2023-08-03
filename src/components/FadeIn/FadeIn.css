@@ -1,0 +1,31 @@
+.FadeIn {
+  animation: fadeIn 1000ms;
+  position: relative;
+}
+
+.FadeOut {
+  animation: fadeOut 900ms;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    top: -100px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    top: 0px;
+  }
+  100% {
+    opacity: 0;
+    top: -100px;
+  }
+}
