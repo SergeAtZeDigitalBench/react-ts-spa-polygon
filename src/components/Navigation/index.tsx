@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const navLinks = [{ id: 1, pathname: "/", title: "Home", exact: true }];
+import { navLinks } from "../../constants";
 
 interface IProps {
   [x: string]: unknown;

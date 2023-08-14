@@ -1,7 +1,8 @@
 import { Route, Switch } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
-import Navigation, { navLinks } from "./components/Navigation";
+import Navigation from "./components/Navigation";
+import { navLinks } from "./constants";
 
 function App() {
   return (
