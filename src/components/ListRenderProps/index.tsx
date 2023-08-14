@@ -1,14 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { IProduct } from "../../types";
-import ProductItem from "../ProductItem";
-
-interface IProps {
+interface IProps<D = any> {
   title: string;
-  items: IProduct[];
+  items: D[];
+  render: (item: D) => JSX.Element;
 }
 
-const List = ({ title, items }: IProps): JSX.Element => {
+const ListRenderProps = ({ title, items, render }: IProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -28,13 +26,7 @@ const List = ({ title, items }: IProps): JSX.Element => {
         </button>
       </div>
 
-      {isOpen && (
-        <ul className="list">
-          {displayItems.map((product) => (
-            <ProductItem key={product.productName} product={product} />
-          ))}
-        </ul>
-      )}
+      {isOpen && <ul className="list">{displayItems.map(render)}</ul>}
 
       <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
         {isCollapsed ? `Show all ${items.length}` : "Show less"}
@@ -43,4 +35,4 @@ const List = ({ title, items }: IProps): JSX.Element => {
   );
 };
 
-export default List;
+export default ListRenderProps;

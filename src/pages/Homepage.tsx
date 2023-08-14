@@ -1,6 +1,6 @@
 import React from "react";
 
-import { products, companies } from "../constants";
+import { products } from "../constants";
 import List from "../components/List";
 interface IProps {
   [x: string]: unknown;
@@ -16,7 +16,7 @@ const Homepage = ({}: IProps): JSX.Element => {
         React design patterns examples
       </h2>
       <div className=" max-w-[50%] mx-auto">
-        <List title="Products" items={products} />
+        <List title="Products (no pattern)" items={products} />
       </div>
     </div>
   );
