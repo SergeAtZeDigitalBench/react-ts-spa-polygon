@@ -1,5 +1,7 @@
 import React from "react";
 
+import { products, companies } from "../constants";
+import List from "../components/List";
 interface IProps {
   [x: string]: unknown;
 }
@@ -13,6 +15,9 @@ const Homepage = ({}: IProps): JSX.Element => {
       <h2 className="text-2xl font-bold text-center">
         React design patterns examples
       </h2>
+      <div className=" max-w-[50%] mx-auto">
+        <List title="Products" items={products} />
+      </div>
     </div>
   );
 };
