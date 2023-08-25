@@ -1,12 +1,9 @@
-import { useContext, useRef, useState } from 'react';
+import { useRef, useState, FormEvent } from 'react';
 
-
-import { FormEvent } from "react";
-
-import { useChallengeContext } from '../store/challenges-context.js';
-import Modal from './Modal.js';
-import { IImage } from "../types";
-import images from '../assets/images';
+import { useChallengeContext } from '../../store/challenges-context';
+import images from '../../assets/images';
+import { IImage } from "../../types";
+import Modal from '../Modal';
 
 export default function NewChallenge({ onDone }: { onDone: () => void }) {
   const title = useRef<HTMLInputElement>(null);
@@ -47,23 +44,23 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
 
   return (
     <Modal title="New Challenge" onClose={onDone}>
-      <form id="new-challenge" onSubmit={handleSubmit}>
+      <form className="newChallenge" onSubmit={handleSubmit}>
         <p>
           <label htmlFor="title">Title</label>
-          <input ref={title} type="text" name="title" id="title" />
+          <input ref={title} type="text" name="title" className="title" />
         </p>
 
         <p>
           <label htmlFor="description">Description</label>
-          <textarea ref={description} name="description" id="description" />
+          <textarea ref={description} name="description" className="description" />
         </p>
 
         <p>
           <label htmlFor="deadline">Deadline</label>
-          <input ref={deadline} type="date" name="deadline" id="deadline" />
+          <input ref={deadline} type="date" name="deadline" className="deadline" />
         </p>
 
-        <ul id="new-challenge-images">
+        <ul className="newChallengeImages">
           {images.map((image) => (
             <li
               key={image.alt}
@@ -75,7 +72,7 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
           ))}
         </ul>
 
-        <p className="new-challenge-actions">
+        <p className="newChallengeActions">
           <button type="button" onClick={onDone}>
             Cancel
           </button>

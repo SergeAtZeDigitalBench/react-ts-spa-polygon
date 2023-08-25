@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import NewChallenge from './NewChallenge.jsx';
+import NewChallenge from '../NewChallenge';
 
 export default function Header() {
   const [isCreatingNewChallenge, setIsCreatingNewChallenge] = useState<boolean>(false);
@@ -17,7 +17,7 @@ export default function Header() {
     <>
       {isCreatingNewChallenge && <NewChallenge onDone={handleDone} />}
 
-      <header id="main-header">
+      <header className="mainHeader">
         <h1>Your Challenges</h1>
         <button onClick={handleStartAddNewChallenge} className="button">
           Add Challenge

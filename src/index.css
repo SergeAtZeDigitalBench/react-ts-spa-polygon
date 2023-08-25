@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
 }
 
-#main-header {
+.mainHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,7 +24,7 @@ body {
   color: #fff;
 }
 
-#hero-img {
+.heroImg {
   display: block;
   width: 80%;
   height: 60vh;
@@ -32,17 +32,17 @@ body {
   object-fit: cover;
 }
 
-#main-header h1 {
+.mainHeader h1 {
   font-family: "Quicksand", sans-serif;
   font-size: 1.5rem;
   color: #84b0fc;
 }
 
-#welcome-header {
+.welcomeHeader {
   height: 100vh;
 }
 
-#city-image {
+.cityImage {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -51,7 +51,7 @@ body {
   object-fit: cover;
 }
 
-#hero-image {
+.heroImage {
   width: 20rem;
   max-width: 40%;
   position: absolute;
@@ -61,7 +61,7 @@ body {
   filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
 }
 
-#welcome-header-content {
+.welcomeHeaderContent {
   width: 40rem;
   position: absolute;
   top: 30%;
@@ -71,13 +71,13 @@ body {
   text-align: center;
 }
 
-#welcome-header-content h1 {
+.welcomeHeaderContent h1 {
   font-size: 3rem;
   color: #fff;
   margin: 2rem 0;
 }
 
-#cta-link {
+.ctaLink {
   display: inline-block;
   padding: 0.5rem 1rem;
   background-color: #0f61ef;
@@ -90,15 +90,15 @@ body {
   text-transform: uppercase;
 }
 
-#cta-link:hover {
+.ctaLink:hover {
   background-color: #0f86ef;
 }
 
-#welcome-content section {
+.welcomeContent section {
   margin: 6rem 0;
 }
 
-#welcome-content h2 {
+.welcomeContent h2 {
   font-size: 2.5rem;
   margin: 2rem 0;
   color: #f2f25d;
@@ -110,7 +110,7 @@ main {
   margin: 1rem auto;
 }
 
-#new-challenge label {
+.newChallenge label {
   display: block;
   margin-bottom: 0.15rem;
   font-weight: bold;
@@ -119,8 +119,8 @@ main {
   color: #414956;
 }
 
-#new-challenge input,
-#new-challenge textarea {
+.newChallenge input,
+.newChallenge textarea {
   display: block;
   width: 100%;
   padding: 0.5rem;
@@ -132,7 +132,7 @@ main {
   font-family: "Quicksand", sans-serif;
 }
 
-#new-challenge-images {
+.newChallengeImages {
   display: grid;
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, 3rem);
@@ -141,30 +141,30 @@ main {
   padding: 0;
 }
 
-#new-challenge-images li {
+.newChallengeImages li {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
   border: 2px solid transparent;
 }
 
-#new-challenge-images li.selected {
+.newChallengeImages li.selected {
   border: 2px solid #0f61ef;
 }
 
-#new-challenge-images li img {
+.newChallengeImages li img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-#challenges {
+.challenges {
   background-color: #22323a;
   padding: 1rem;
   border-radius: 6px;
 }
 
-#tabs {
+.tabs {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -173,7 +173,7 @@ main {
   gap: 1rem;
 }
 
-#tabs button {
+.tabs button {
   padding: 0.5rem 0.25rem 0.5rem 0.25rem;
   text-align: left;
   cursor: pointer;
@@ -186,18 +186,18 @@ main {
   align-items: center;
 }
 
-#tabs button:hover,
-#tabs button.selected {
+.tabs button:hover,
+.tabs button.selected {
   /* background-color: #355767; */
   color: #fff;
 }
 
-#tabs .active-tab-indicator {
+.tabs .activeTabIndicator {
   border: 1.5px solid #0f86ef;
   border-radius: 8px;
 }
 
-.challenge-items {
+.challengeItems {
   width: 100%;
   max-width: 90%;
   display: flex;
@@ -208,39 +208,39 @@ main {
   padding: 0;
 }
 
-.challenge-item {
+.challengeItem {
   width: 100%;
 }
 
-.challenge-item header {
+.challengeItem header {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
 }
 
-.challenge-item-meta {
+.challengeItemMeta {
   width: 100%;
 }
 
-.challenge-item header h2 {
+.challengeItem header h2 {
   margin: 0;
   font-size: 1.25rem;
   color: #b1c1d9;
 }
 
-.challenge-item header p {
+.challengeItem header p {
   margin-top: 0;
   font-family: "Quicksand", sans-serif;
   font-size: 0.7rem;
 }
 
-.challenge-item-actions {
+.challengeItemActions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 }
 
-.challenge-item-actions button {
+.challengeItemActions button {
   cursor: pointer;
   font: inherit;
   background: transparent;
@@ -249,25 +249,25 @@ main {
   padding: 0;
 }
 
-.challenge-item-actions button:hover {
+.challengeItemActions button:hover {
   color: #5d7bf2;
 }
 
-.challenge-item-actions .btn-negative {
+.challengeItemActions .btnNegative {
   color: #ff7b7b;
 }
 
-.challenge-item-actions .btn-negative:hover {
+.challengeItemActions .btnNegative:hover {
   color: #ff4f4f;
 }
 
-.challenge-item img {
+.challengeItem img {
   width: 4rem;
   height: 4rem;
   object-fit: contain;
 }
 
-.challenge-item-details button {
+.challengeItemDetails button {
   cursor: pointer;
   font: inherit;
   background: transparent;
@@ -276,22 +276,22 @@ main {
   padding: 0;
 }
 
-.challenge-item-details-icon {
+.challengeItemDetailsIcon {
   display: inline-block;
   font-size: 0.85rem;
   margin-left: 0.25rem;
   transition: transform 0.3s ease-out;
 }
 
-.challenge-item-details.expanded .challenge-item-details-icon {
+.challengeItemDetails.expanded .challengeItemDetailsIcon {
   transform: rotate(180deg);
 }
 
-.challenge-item-description {
+.challengeItemDescription {
   margin: 0;
 }
 
-.new-challenge-actions button,
+.newChallengeActions button,
 .button {
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -299,10 +299,10 @@ main {
   background-color: #0f61ef;
   color: #fff;
   border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(156, 106, 106, 0.2);
 }
 
-.new-challenge-actions button:hover,
+.newChallengeActions button:hover,
 .button:hover {
   background-color: #0f3cef;
 }
@@ -320,14 +320,14 @@ main {
   margin-top: 0;
 }
 
-.new-challenge-actions {
+.newChallengeActions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
   margin-top: 1rem;
 }
 
-.new-challenge-actions button:first-of-type {
+.newChallengeActions button:first-of-type {
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -337,7 +337,7 @@ main {
   box-shadow: none;
 }
 
-.new-challenge-actions button:first-of-type:hover {
+.newChallengeActions button:first-of-type:hover {
   background-color: transparent;
   color: #0f3cef;
 }
@@ -350,13 +350,4 @@ main {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 9;
-}
-
-.badge {
-  margin-left: 0.5rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  background-color: #0f61ef;
-  color: #fff;
-  font-size: 0.5rem;
 }

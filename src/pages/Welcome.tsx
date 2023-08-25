@@ -6,21 +6,21 @@ import heroImg from '../assets/hero.png';
 export default function WelcomePage() {
   return (
     <>
-      <header id="welcome-header">
-        <div id="welcome-header-content">
+      <header className="welcomeHeader">
+        <div className="welcomeHeaderContent">
           <h1>Ready for a challenge?</h1>
-          <Link id="cta-link" to="/challenges">
+          <Link className="ctaLink" to="/challenges">
             Get Started
           </Link>
         </div>
         <img
           src={cityImg}
           alt="A city skyline touched by sunlight"
-          id="city-image"
+          className="cityImage"
         />
-        <img src={heroImg} alt="A superhero wearing a cape" id="hero-image" />
+        <img src={heroImg} alt="A superhero wearing a cape" className="heroImage" />
       </header>
-      <main id="welcome-content">
+      <main className="welcomeContent">
         <section>
           <h2>There&apos;s never been a better time.</h2>
           <p>

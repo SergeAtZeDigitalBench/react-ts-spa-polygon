@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useChallengeContext } from '../store/challenges-context.js';
-import ChallengeItem from './ChallengeItem.js';
-import ChallengeTabs from './ChallengeTabs.jsx';
+import { useChallengeContext } from '../../store/challenges-context';
+import ChallengeItem from '../ChallengeItem';
+import ChallengeTabs from '../ChallengeTabs';
 
 export default function Challenges() {
   const { challenges } = useChallengeContext();
@@ -34,14 +34,14 @@ export default function Challenges() {
   const displayedChallenges = filteredChallenges[selectedType];
 
   return (
-    <div id="challenges">
+    <div className="challenges">
       <ChallengeTabs
         challenges={filteredChallenges}
         onSelectType={handleSelectType}
         selectedType={selectedType}
       >
         {displayedChallenges.length > 0 && (
-          <ol className="challenge-items">
+          <ol className="challengeItems">
             {displayedChallenges.map((challenge) => (
               <ChallengeItem
                 key={challenge.id}

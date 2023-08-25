@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
-import { IParent } from "../types";
+
+import { IParent } from "../../types";
 
 interface IProps extends IParent { title: string, onClose: (...args: any[]) => void }
 
