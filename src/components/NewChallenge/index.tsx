@@ -66,7 +66,7 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
             <li
               key={image.alt}
               onClick={() => handleSelectImage(image)}
-              className={selectedImage === image ? 'selected' : undefined}
+              className={selectedImage === image ? classes.selected : undefined}
             >
               <img {...image} />
             </li>

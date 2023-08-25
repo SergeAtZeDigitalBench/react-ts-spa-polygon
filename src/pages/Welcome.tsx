@@ -2,25 +2,26 @@ import { Link } from 'react-router-dom';
 
 import cityImg from '../assets/city.jpg';
 import heroImg from '../assets/hero.png';
+import classes from '../styles/Welcome.module.css'
 
 export default function WelcomePage() {
   return (
     <>
-      <header className="welcomeHeader">
-        <div className="welcomeHeaderContent">
+      <header className={classes.welcomeHeader}>
+        <div className={classes.welcomeHeaderContent}>
           <h1>Ready for a challenge?</h1>
-          <Link className="ctaLink" to="/challenges">
+          <Link className={classes.ctaLink} to="/challenges">
             Get Started
           </Link>
         </div>
         <img
           src={cityImg}
           alt="A city skyline touched by sunlight"
-          className="cityImage"
+          className={classes.cityImage}
         />
-        <img src={heroImg} alt="A superhero wearing a cape" className="heroImage" />
+        <img src={heroImg} alt="A superhero wearing a cape" className={classes.heroImage} />
       </header>
-      <main className="welcomeContent">
+      <main className={classes.welcomeContent}>
         <section>
           <h2>There&apos;s never been a better time.</h2>
           <p>
