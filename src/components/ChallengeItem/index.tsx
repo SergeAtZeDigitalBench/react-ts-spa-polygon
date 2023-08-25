@@ -33,31 +33,31 @@ const ChallengeItem = ({
 
     return (
         <li>
-            <article className="challengeItem">
+            <article className={classes.challengeItem}>
                 <header>
                     <img {...challenge.image} />
-                    <div className="challengeItemMeta">
+                    <div className={classes.challengeItemMeta}>
                         <h2>{challenge.title}</h2>
                         <p>Complete until {formattedDate}</p>
-                        <p className="challengeItemActions">
-                            <button onClick={handleCancel} className="btnNegative">
+                        <p className={classes.challengeItemActions}>
+                            <button onClick={handleCancel} className={classes.btnNegative}>
                                 Mark as failed
                             </button>
                             <button onClick={handleComplete}>Mark as completed</button>
                         </p>
                     </div>
                 </header>
-                <div className={classnames("challengeItemDetails", isExpanded && "expanded")}>
+                <div className={classnames(classes.challengeItemDetails, isExpanded && classes.expanded)}>
                     <p>
                         <button onClick={onViewDetails}>
                             View Details{' '}
-                            <span className="challengeItemDetailsIcon">&#9650;</span>
+                            <span className={classes.challengeItemDetailsIcon}>&#9650;</span>
                         </button>
                     </p>
 
                     {isExpanded && (
                         <div>
-                            <p className="challengeItemDescription">
+                            <p className={classes.challengeItemDescription}>
                                 {challenge.description}
                             </p>
                         </div>

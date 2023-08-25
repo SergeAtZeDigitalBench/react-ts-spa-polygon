@@ -1,5 +1,6 @@
 import { IParent } from "../../types";
 import Badge from '../Badge';
+import classes from './ChallengeTabs.module.css'
 
 interface ITabProps extends IParent { isSelected: boolean, onSelect: (...args: any[]) => void, badgeCaption: string | number, }
 
@@ -7,13 +8,13 @@ function Tab({ isSelected, onSelect, badgeCaption, children }: ITabProps) {
   return (
     <li>
       <button
-        className={isSelected ? 'selected' : undefined}
+        className={isSelected ? classes.selected : undefined}
         onClick={onSelect}
       >
         {children}
         <Badge caption={badgeCaption}></Badge>
       </button>
-      {isSelected && <div className="activeTabIndicator" />}
+      {isSelected && <div className={classes.activeTabIndicator} />}
     </li>
   );
 }
@@ -31,7 +32,7 @@ export default function ChallengeTabs({
 }: IChallengeProps) {
   return (
     <>
-      <menu className="tabs">
+      <menu className={classes.tabs}>
         <Tab
           isSelected={selectedType === 'active'}
           onSelect={() => onSelectType('active')}

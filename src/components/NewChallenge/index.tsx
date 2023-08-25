@@ -4,6 +4,7 @@ import { useChallengeContext } from '../../store/challenges-context';
 import images from '../../assets/images';
 import { IImage } from "../../types";
 import Modal from '../Modal';
+import classes from './NewChallenge.module.css'
 
 export default function NewChallenge({ onDone }: { onDone: () => void }) {
   const title = useRef<HTMLInputElement>(null);
@@ -44,7 +45,7 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
 
   return (
     <Modal title="New Challenge" onClose={onDone}>
-      <form className="newChallenge" onSubmit={handleSubmit}>
+      <form className={classes.newChallenge} onSubmit={handleSubmit}>
         <p>
           <label htmlFor="title">Title</label>
           <input ref={title} type="text" name="title" className="title" />
@@ -60,7 +61,7 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
           <input ref={deadline} type="date" name="deadline" className="deadline" />
         </p>
 
-        <ul className="newChallengeImages">
+        <ul className={classes.newChallengeImages}>
           {images.map((image) => (
             <li
               key={image.alt}
@@ -72,7 +73,7 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
           ))}
         </ul>
 
-        <p className="newChallengeActions">
+        <p className={classes.newChallengeActions}>
           <button type="button" onClick={onDone}>
             Cancel
           </button>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useChallengeContext } from '../../store/challenges-context';
 import ChallengeItem from '../ChallengeItem';
 import ChallengeTabs from '../ChallengeTabs';
+import classes from './Challenges.module.css'
 
 export default function Challenges() {
   const { challenges } = useChallengeContext();
@@ -34,14 +35,14 @@ export default function Challenges() {
   const displayedChallenges = filteredChallenges[selectedType];
 
   return (
-    <div className="challenges">
+    <div className={classes.challenges}>
       <ChallengeTabs
         challenges={filteredChallenges}
         onSelectType={handleSelectType}
         selectedType={selectedType}
       >
         {displayedChallenges.length > 0 && (
-          <ol className="challengeItems">
+          <ol className={classes.challengeItems}>
             {displayedChallenges.map((challenge) => (
               <ChallengeItem
                 key={challenge.id}
