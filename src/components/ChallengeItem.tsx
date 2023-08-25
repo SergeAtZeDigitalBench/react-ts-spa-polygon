@@ -1,5 +1,6 @@
 
 import { useChallengeContext } from '../store/challenges-context';
+import classnames from 'classnames'
 
 export default function ChallengeItem({
   challenge,
@@ -41,7 +42,7 @@ export default function ChallengeItem({
             </p>
           </div>
         </header>
-        <div className="challenge-item-details">
+        <div className={classnames("challenge-item-details", isExpanded && "expanded")}>
           <p>
             <button onClick={onViewDetails}>
               View Details{' '}
