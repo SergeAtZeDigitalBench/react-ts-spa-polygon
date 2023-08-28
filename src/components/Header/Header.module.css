@@ -1,0 +1,29 @@
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  max-width: 40rem;
+  margin: 2rem auto;
+  color: #fff;
+}
+
+.mainHeader h1 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5rem;
+  color: #84b0fc;
+}
+
+.button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: #0f61ef;
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 4px rgba(156, 106, 106, 0.2);
+}
+
+.button:hover {
+  background-color: #0f3cef;
+}

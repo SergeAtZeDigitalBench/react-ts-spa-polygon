@@ -1,0 +1,16 @@
+.challenges {
+  background-color: #22323a;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.challengeItems {
+  width: 100%;
+  max-width: 90%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  list-style: none;
+  margin: 2rem 0 0 0;
+  padding: 0;
+}
