@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { navLinks } from "../../constants";
+import { navLinks } from "@/constants";
 
 interface IProps {
   [x: string]: unknown;
