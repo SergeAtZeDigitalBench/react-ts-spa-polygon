@@ -1,8 +1,12 @@
-import { IParent } from "../../types";
-import Badge from '../Badge';
-import classes from './ChallengeTabs.module.css'
+import { IParent } from "@/types";
+import Badge from "../Badge";
+import classes from "./ChallengeTabs.module.css";
 
-interface ITabProps extends IParent { isSelected: boolean, onSelect: (...args: any[]) => void, badgeCaption: string | number, }
+interface ITabProps extends IParent {
+  isSelected: boolean;
+  onSelect: (...args: any[]) => void;
+  badgeCaption: string | number;
+}
 
 function Tab({ isSelected, onSelect, badgeCaption, children }: ITabProps) {
   return (
@@ -20,9 +24,9 @@ function Tab({ isSelected, onSelect, badgeCaption, children }: ITabProps) {
 }
 
 interface IChallengeProps extends IParent {
-  selectedType: string
+  selectedType: string;
   onSelectType: (...args: any[]) => void;
-  challenges: Record<string, Record<string, any>[]>
+  challenges: Record<string, Record<string, any>[]>;
 }
 export default function ChallengeTabs({
   selectedType,
@@ -34,22 +38,22 @@ export default function ChallengeTabs({
     <>
       <menu className={classes.tabs}>
         <Tab
-          isSelected={selectedType === 'active'}
-          onSelect={() => onSelectType('active')}
+          isSelected={selectedType === "active"}
+          onSelect={() => onSelectType("active")}
           badgeCaption={challenges.active.length}
         >
           Active
         </Tab>
         <Tab
-          isSelected={selectedType === 'completed'}
-          onSelect={() => onSelectType('completed')}
+          isSelected={selectedType === "completed"}
+          onSelect={() => onSelectType("completed")}
           badgeCaption={challenges.completed.length}
         >
           Completed
         </Tab>
         <Tab
-          isSelected={selectedType === 'failed'}
-          onSelect={() => onSelectType('failed')}
+          isSelected={selectedType === "failed"}
+          onSelect={() => onSelectType("failed")}
           badgeCaption={challenges.failed.length}
         >
           Failed

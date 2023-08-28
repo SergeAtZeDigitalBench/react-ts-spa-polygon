@@ -1,10 +1,10 @@
-import { useRef, useState, FormEvent } from 'react';
+import { useRef, useState, FormEvent } from "react";
 
-import { useChallengeContext } from '../../store/challenges-context';
-import images from '../../assets/images';
-import { IImage } from "../../types";
-import Modal from '../Modal';
-import classes from './NewChallenge.module.css'
+import { useChallengeContext } from "@/store/challenges-context";
+import images from "@/assets/images";
+import { IImage } from "@/types";
+import Modal from "../Modal";
+import classes from "./NewChallenge.module.css";
 
 export default function NewChallenge({ onDone }: { onDone: () => void }) {
   const title = useRef<HTMLInputElement>(null);
@@ -53,12 +53,21 @@ export default function NewChallenge({ onDone }: { onDone: () => void }) {
 
         <p>
           <label htmlFor="description">Description</label>
-          <textarea ref={description} name="description" className="description" />
+          <textarea
+            ref={description}
+            name="description"
+            className="description"
+          />
         </p>
 
         <p>
           <label htmlFor="deadline">Deadline</label>
-          <input ref={deadline} type="date" name="deadline" className="deadline" />
+          <input
+            ref={deadline}
+            type="date"
+            name="deadline"
+            className="deadline"
+          />
         </p>
 
         <ul className={classes.newChallengeImages}>

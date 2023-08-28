@@ -1,6 +1,6 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext } from "react";
 
-import { IParent, IChallengeCtx } from "../types";
+import { IParent, IChallengeCtx } from "@/types";
 
 export const ChallengesContext = createContext<IChallengeCtx | null>(null);
 
@@ -9,7 +9,7 @@ export default function ChallengesContextProvider({ children }: IParent) {
 
   function addChallenge(challenge: Record<string, any>) {
     setChallenges((prevChallenges) => [
-      { ...challenge, id: Math.random().toString(), status: 'active' },
+      { ...challenge, id: Math.random().toString(), status: "active" },
       ...prevChallenges,
     ]);
   }
@@ -49,9 +49,8 @@ export const useChallengeContext = () => {
   const ctx = useContext(ChallengesContext);
 
   if (!ctx) {
-    throw new Error("No context found! Check your Context Provider scope.")
+    throw new Error("No context found! Check your Context Provider scope.");
   }
 
   return ctx;
-}
-
+};

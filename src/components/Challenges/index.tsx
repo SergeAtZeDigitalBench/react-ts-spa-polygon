@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useChallengeContext } from '../../store/challenges-context';
-import ChallengeItem from '../ChallengeItem';
-import ChallengeTabs from '../ChallengeTabs';
-import classes from './Challenges.module.css'
+import { useChallengeContext } from "@/store/challenges-context";
+import ChallengeItem from "../ChallengeItem";
+import ChallengeTabs from "../ChallengeTabs";
+import classes from "./Challenges.module.css";
 
 export default function Challenges() {
   const { challenges } = useChallengeContext();
-  const [selectedType, setSelectedType] = useState('active');
+  const [selectedType, setSelectedType] = useState("active");
   const [expanded, setExpanded] = useState<null | string>(null);
 
   function handleSelectType(newType: string) {
@@ -25,11 +25,11 @@ export default function Challenges() {
   }
 
   const filteredChallenges: Record<string, Record<string, any>[]> = {
-    active: challenges.filter((challenge) => challenge.status === 'active'),
+    active: challenges.filter((challenge) => challenge.status === "active"),
     completed: challenges.filter(
-      (challenge) => challenge.status === 'completed'
+      (challenge) => challenge.status === "completed"
     ),
-    failed: challenges.filter((challenge) => challenge.status === 'failed'),
+    failed: challenges.filter((challenge) => challenge.status === "failed"),
   };
 
   const displayedChallenges = filteredChallenges[selectedType];

@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import cityImg from '../assets/city.jpg';
-import heroImg from '../assets/hero.png';
-import classes from '../styles/Welcome.module.css'
+import cityImg from "@/assets/city.jpg";
+import heroImg from "@/assets/hero.png";
+import classes from "@/styles/Welcome.module.css";
 
 export default function WelcomePage() {
   return (
@@ -19,7 +19,11 @@ export default function WelcomePage() {
           alt="A city skyline touched by sunlight"
           className={classes.cityImage}
         />
-        <img src={heroImg} alt="A superhero wearing a cape" className={classes.heroImage} />
+        <img
+          src={heroImg}
+          alt="A superhero wearing a cape"
+          className={classes.heroImage}
+        />
       </header>
       <main className={classes.welcomeContent}>
         <section>

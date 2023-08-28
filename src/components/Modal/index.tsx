@@ -1,9 +1,12 @@
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 
-import { IParent } from "../../types";
-import classes from './Modal.module.css'
+import { IParent } from "@/types";
+import classes from "./Modal.module.css";
 
-interface IProps extends IParent { title: string, onClose: (...args: any[]) => void }
+interface IProps extends IParent {
+  title: string;
+  onClose: (...args: any[]) => void;
+}
 
 export default function Modal({ title, children, onClose }: IProps) {
   return createPortal(
@@ -15,6 +18,6 @@ export default function Modal({ title, children, onClose }: IProps) {
       </dialog>
     </>,
 
-    document.getElementById('modal') as Element
+    document.getElementById("modal") as Element
   );
 }
