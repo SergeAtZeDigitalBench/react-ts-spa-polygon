@@ -70,11 +70,6 @@
   display: inline-block;
   font-size: 0.85rem;
   margin-left: 0.25rem;
-  transition: transform 0.3s ease-out;
-}
-
-.challengeItemDetails.expanded .challengeItemDetailsIcon {
-  transform: rotate(180deg);
 }
 
 .challengeItemDescription {

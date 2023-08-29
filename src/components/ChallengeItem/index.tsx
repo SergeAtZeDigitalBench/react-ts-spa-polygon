@@ -1,6 +1,6 @@
 import React from "react";
-import classnames from "classnames";
 import { useChallengeContext } from "@/store/challenges-context";
+import { motion } from "framer-motion";
 import classes from "./ChallengeItem.module.css";
 
 interface IProps {
@@ -44,15 +44,12 @@ const ChallengeItem = ({ challenge, onViewDetails, isExpanded }: IProps) => {
           </div>
         </header>
         <div
-          className={classnames(
-            classes.challengeItemDetails,
-            isExpanded && classes.expanded
-          )}
+          className={classes.challengeItemDetails}
         >
           <p>
             <button onClick={onViewDetails}>
               View Details{" "}
-              <span className={classes.challengeItemDetailsIcon}>&#9650;</span>
+              <motion.span className={classes.challengeItemDetailsIcon} animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: .3 }}>&#9650;</motion.span>
             </button>
           </p>
 
