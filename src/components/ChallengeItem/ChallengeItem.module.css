@@ -1,0 +1,82 @@
+.challengeItem {
+  width: 100%;
+}
+
+.challengeItem header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.challengeItemMeta {
+  width: 100%;
+}
+
+.challengeItem header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #b1c1d9;
+}
+
+.challengeItem header p {
+  margin-top: 0;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.7rem;
+}
+
+.challengeItemActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.challengeItemActions button {
+  cursor: pointer;
+  font: inherit;
+  background: transparent;
+  border: none;
+  color: #7aaafc;
+  padding: 0;
+}
+
+.challengeItemActions button:hover {
+  color: #5d7bf2;
+}
+
+.challengeItemActions .btnNegative {
+  color: #ff7b7b;
+}
+
+.challengeItemActions .btnNegative:hover {
+  color: #ff4f4f;
+}
+
+.challengeItem img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+}
+
+.challengeItemDetails button {
+  cursor: pointer;
+  font: inherit;
+  background: transparent;
+  border: none;
+  color: #7aaafc;
+  padding: 0;
+}
+
+.challengeItemDetailsIcon {
+  display: inline-block;
+  font-size: 0.85rem;
+  margin-left: 0.25rem;
+  transition: transform 0.3s ease-out;
+}
+
+.challengeItemDetails.expanded .challengeItemDetailsIcon {
+  transform: rotate(180deg);
+}
+
+.challengeItemDescription {
+  margin: 0;
+}

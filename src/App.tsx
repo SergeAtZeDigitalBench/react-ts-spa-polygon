@@ -1,18 +1,15 @@
-import { Route, Switch } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Homepage from "@/pages/Homepage";
-import Navigation from "@/components/Navigation";
-import { navLinks } from "@/constants";
+import WelcomePage from "@/pages/Welcome";
+import ChallengesPage from "@/pages/Challenges";
+
+const router = createBrowserRouter([
+  { path: "/", element: <WelcomePage /> },
+  { path: "/challenges", element: <ChallengesPage /> },
+]);
 
 function App() {
-  return (
-    <div>
-      <Navigation />
-      <Switch>
-        <Route path={navLinks[0].pathname} exact component={Homepage} />
-      </Switch>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
